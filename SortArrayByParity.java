@@ -1,3 +1,6 @@
+/*
+Given an integer array nums, move all the even integers at the beginning of the array followed by all the odd integers.
+ */
 public class SortArrayByParity {
     public static int[] sortArrayByParity(int[] nums) {
 
