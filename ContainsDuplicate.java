@@ -6,7 +6,7 @@ element is distinct.
 import java.util.Arrays;
 
 public class ContainsDuplicate {
-    public boolean containsDuplicate(int[] nums) {
+    public static boolean containsDuplicate(int[] nums) {
 
         if (nums.length == 1)
             return false;
@@ -21,5 +21,12 @@ public class ContainsDuplicate {
         }
 
         return false;
+    }
+
+    public static void main(String[] args) {
+
+        int nums[] = {1, 2, 3, 4};
+
+        System.out.println("Array Contains Duplicate Elements : " + containsDuplicate(nums));
     }
 }
