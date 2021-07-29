@@ -6,6 +6,9 @@ public class SquareSortedArray {
     public static int[] sortedSquares(int[] A) {
         int N = A.length;
         int j = 0;
+
+        //Finding the element from where positive number start
+        //Dividing the array into two part negative and positive
         while (j < N && A[j] < 0)
             j++;
         int i = j-1;
@@ -13,6 +16,7 @@ public class SquareSortedArray {
         int[] ans = new int[N];
         int t = 0;
 
+        //Using merge sort technique to solve it
         while (i >= 0 && j < N) {
             if (A[i] * A[i] < A[j] * A[j]) {
                 ans[t++] = A[i] * A[i];
