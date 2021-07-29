@@ -25,7 +25,7 @@ public class ContainsDuplicate {
 
     public static void main(String[] args) {
 
-        int nums[] = {1, 2, 3, 4};
+        int nums[] = {1, 2, 3, 1};
 
         System.out.println("Array Contains Duplicate Elements : " + containsDuplicate(nums));
     }
