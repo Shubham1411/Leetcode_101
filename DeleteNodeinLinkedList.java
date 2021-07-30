@@ -7,11 +7,14 @@ It is guaranteed that the node to be deleted is not a tail node in the list.
 public class DeleteNodeinLinkedList {
 
     //Definition for singly-linked list.
-     public class ListNode {
-          int val;
-          ListNode next;
-          ListNode(int x) { val = x; }
-      }
+    public class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+    }
 
     public void deleteNode(ListNode node) {
 
