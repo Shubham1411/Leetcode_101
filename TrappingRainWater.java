@@ -37,7 +37,7 @@ public class TrappingRainWater {
 
         int len = height.length, max_water = 0;
 
-        if(len==0) return 0;
+        if (len == 0) return 0;
 
         int left[] = new int[len];
         int right[] = new int[len];
@@ -53,6 +53,24 @@ public class TrappingRainWater {
         for (int i = 0; i < len; i++)
             max_water += Math.min(left[i], right[i]) - height[i];
 
+        return max_water;
+    }
+
+    //Approach 3: Using 2 pointers technique to keep track of the max height observed till the element
+    //time : O(n), space: O(1). Took lest time and more optimized way
+    public static int trap4(int[] height) {
+        int max_water = 0, maxLeft = 0, maxRight = 0, i = 0, j = height.length - 1;
+        while (i < j) {
+            if (height[i] < height[j]) {
+                maxLeft = Math.max(maxLeft, height[i]);
+                max_water += maxLeft - height[i];
+                i++;
+            } else {
+                maxRight = Math.max(maxRight, height[j]);
+                max_water += maxRight - height[j];
+                j--;
+            }
+        }
         return max_water;
     }
 
