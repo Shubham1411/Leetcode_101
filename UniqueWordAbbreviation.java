@@ -20,6 +20,10 @@ For any word in dictionary whose abbreviation is equal to word's abbreviation, t
 
 //Approach: Using HashMap and HashSet to maintain the key and the set of words
 //Time: 1901 ms, 99 percentile
+
+//The tricky part of this question is the case of duplications in the dictionary. if input dictionary is
+// ["a", "a", "a"], and query is isUnique("a"), this should return true; because "a" is unique. another point require
+// attention is to query the exactly word in the dictionary, this also should return true.
 public class UniqueWordAbbreviation {
 
     Map<String, Set<String>> dict;
