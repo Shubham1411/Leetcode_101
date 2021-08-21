@@ -32,6 +32,7 @@ public class MyCircularQueue {
         rear = -1;
     }
 
+    //Insert an element into the circular queue. Return true if the operation is successful
     public boolean enQueue(int value) {
         if (isFull())
             return false;
@@ -47,6 +48,7 @@ public class MyCircularQueue {
         return true;
     }
 
+    //Delete an element from the circular queue. Return true if the operation is successful
     public boolean deQueue() {
         if (isEmpty())
             return false;
@@ -103,5 +105,4 @@ public class MyCircularQueue {
         myCircularQueue.enQueue(4); // return True
         myCircularQueue.Rear();     // return 4
     }
-
 }
