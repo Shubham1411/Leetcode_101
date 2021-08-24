@@ -4,46 +4,52 @@ Given a string s containing just the characters '(', ')', '{', '}', '[' and ']',
 
 import java.util.Stack;
 
+//Approach: Using Stack. Time: O(n), 98 percentile, Space: O(n)
 public class ValidParentheses {
     public static boolean isValid(String s) {
 
-        Stack<Character> stack = new Stack<Character>();
-        Character ch;
+        Stack<Character> stack = new Stack<>();
+        char popped;
 
         for (int i = 0; i < s.length(); i++) {
-            switch (s.charAt(i)) {
-                //If a left open parentheses is encountered push to stack
+
+            char ch = s.charAt(i);
+
+            //Push if left ones are there
+            switch (ch) {
                 case '(':
                 case '{':
                 case '[':
-                    stack.push(s.charAt(i));
+                    stack.push(ch);
                     break;
 
-                //Now pop and check if same type of right open parentheses is popped or else return false
+                //Pop if right ones are there and then check for corresponding left ones
                 case ')':
-                    if (stack.isEmpty() == false) {
-                        ch = (Character) stack.pop();
-                        if (ch != '(') {
+                    if (!stack.isEmpty()) {
+                        popped = (Character) stack.pop();
+                        if (popped != '(') {
                             return false;
                         }
                     } else {
                         return false;
                     }
                     break;
+
                 case '}':
-                    if (stack.isEmpty() == false) {
-                        ch = (Character) stack.pop();
-                        if (ch != '{') {
+                    if (!stack.isEmpty()) {
+                        popped = (Character) stack.pop();
+                        if (popped != '{') {
                             return false;
                         }
                     } else {
                         return false;
                     }
                     break;
+
                 case ']':
-                    if (stack.isEmpty() == false) {
-                        ch = (Character) stack.pop();
-                        if (ch != '[') {
+                    if (!stack.isEmpty()) {
+                        popped = (Character) stack.pop();
+                        if (popped != '[') {
                             return false;
                         }
                     } else {
