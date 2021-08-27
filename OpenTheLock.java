@@ -18,7 +18,8 @@ required to open the lock, or -1 if it is impossible.
  */
 public class OpenTheLock {
 
-    //Approach 1:
+    //Approach 1: Using BFS. Start with 0000 combination. Add the deadends to the visited list. Use getNextCombiantions
+    //to get the rest 8 combinations. Time: 61 percentile.
     //Method to generate next combinations of code
     public static Set<String> getNextCombiantions(String code) {
 
@@ -78,10 +79,10 @@ public class OpenTheLock {
     }
 
 
-    //Approach 2:
+    //Approach 2: Time: 97.21 percentile Space: 92.27 percentile. Using double BFS
 
-    //s[j] turns one more or from 9 to 0
-    public static String plusOne(String s, int j) {
+    /* s[j] turns one more or from 9 to 0 */
+    public String plusOne(String s, int j) {
         char[] ch = s.toCharArray();
         if (ch[j] == '9')
             ch[j] = '0';
@@ -90,8 +91,8 @@ public class OpenTheLock {
         return new String(ch);
     }
 
-    //s[j] turns one less or from 0 to 9
-    public static String minusOne(String s, int j) {
+    /* s[j] turns one less or from 0 to 9 */
+    public String minusOne(String s, int j) {
         char[] ch = s.toCharArray();
         if (ch[j] == '0')
             ch[j] = '9';
@@ -100,11 +101,11 @@ public class OpenTheLock {
         return new String(ch);
     }
 
-    public static int openLock2(String[] deadends, String target) {
-
+    //Double BFS: begin with both start and target
+    public int openLock2(String[] deadends, String target) {
+        // opt: discard deads, use visited to cover deadends and visited
         Set<String> visited = new HashSet<>();
-        for (String deadend : deadends)
-            visited.add(deadend);
+        for (String s : deadends) visited.add(s);
 
         // store strings from start to target
         Set<String> q1 = new HashSet<>();
@@ -116,31 +117,32 @@ public class OpenTheLock {
         int step = 0;
 
         while (!q1.isEmpty() && !q2.isEmpty()) {
-
             // store all children of cur
             Set<String> temp = new HashSet<>();
 
             for (String cur : q1) {
-
                 if (visited.contains(cur))
                     continue;
-
-                if (q1.contains(cur)) {
+                // meet up, return
+                if (q2.contains(cur)) {
                     return step;
                 }
-
                 visited.add(cur);
 
                 for (int j = 0; j < 4; j++) {
                     String up = plusOne(cur, j);
                     if (!visited.contains(up))
-                        q1.add(up);
+                        temp.add(up);
                     String down = minusOne(cur, j);
                     if (!visited.contains(down))
-                        q1.add(down);
+                        temp.add(down);
                 }
             }
             step++;
+            // temp is q1
+            // swap q1 and q2, do q2 next
+            q1 = q2;
+            q2 = temp;
         }
         return -1;
     }
