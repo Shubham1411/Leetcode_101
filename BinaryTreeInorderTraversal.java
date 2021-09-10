@@ -25,7 +25,7 @@ public class BinaryTreeInorderTraversal {
     }
 
     //Approach 1: An Iterative approach using Stack and DFS. Start with the root node. Start checking the left node of
-    //each root if that's null, add to list. Or else use DFSa nd push it onto stack. After traversing all the left nodes
+    //each root if that's null, add to list. Or else use DFS and push it onto stack. After traversing all the left nodes
     //Start with the right nodes.
     //Time: O(n), 100 percentile, 0ms. Space: O(n)
     public List<Integer> inorderTraversal1(TreeNode root) {
