@@ -15,9 +15,11 @@ postorder is guaranteed to be the postorder traversal of the tree.
  */
 
 //Approach : Store the values and indexes of the Inorder traversal in a HashMap for searching them in O(1) time. Then
-//recursively iterate the preorder and inorder arrays. The last index of the postorder will be the root node, find its
+//recursively iterate the postorder and inorder arrays. The last index of the postorder will be the root node, find its
 //index in the inorder, left side of the index will be left child and right side of the index will be right child
-//Time: 61 percentile
+//In recursion we 1st use root, then right subtree and then left, since POST(Left, Right, Root) and we are traversing
+//from backwards of postorder.
+//Time: 97 percentile
 public class ConstructBinaryTreeInorderPostorder {
 
     //Definition for a binary tree node.
