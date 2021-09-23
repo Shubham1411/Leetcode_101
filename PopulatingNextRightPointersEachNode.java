@@ -41,9 +41,9 @@ public class PopulatingNextRightPointersEachNode {
         }
     }
 
-    //Approach 1: Recursively solve this problem
+    //Approach 1: Recursively solve this problem using DFS
     //Time: 100 percentile
-    public Node connect(Node root) {
+    public Node connect1(Node root) {
 
         //if root is null return root
         if (root == null)
@@ -60,8 +60,37 @@ public class PopulatingNextRightPointersEachNode {
         }
 
         //recursively call on left and right subtrees
-        connect(root.left);
-        connect(root.right);
+        connect1(root.left);
+        connect1(root.right);
+
+        return root;
+    }
+
+    //Approach 2: Using Iterative approach by 1st moving down levels and then moving within the level
+    //Time: 100 percentile
+    public Node connect2(Node root) {
+
+        //if root is null return root
+        if (root == null) {
+            return null;
+        }
+
+        Node levelStart = root;
+
+        // Moving across down the levels
+        while (levelStart != null) {
+
+            Node curr = levelStart;
+
+            // Move within the levels
+            while (curr != null) {
+                if (curr.left != null) curr.left.next = curr.right;
+                if (curr.right != null && curr.next != null) curr.right.next = curr.next.left;
+                curr = curr.next;
+            }
+
+            levelStart = levelStart.left;
+        }
 
         return root;
     }
