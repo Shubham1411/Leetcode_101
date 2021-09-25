@@ -34,10 +34,8 @@ public class ReverseString {
         char temp = s[start];
         s[start] = s[end];
         s[end] = temp;
-        start++;
-        end--;
 
-        reverseStringHelper(start, end, s);
+        reverseStringHelper(start + 1, end - 1, s);
     }
 
     public static void main(String[] args) {
