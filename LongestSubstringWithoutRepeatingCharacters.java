@@ -58,6 +58,31 @@ public class LongestSubstringWithoutRepeatingCharacters {
         return maxLength;
     }
 
+    public static int lengthOfLongestSubstring3(String s) {
+        int[] frequency = new int[128];
+
+        int left = 0;
+        int right = 0;
+
+        int max = 0;
+        while (right < s.length()) {
+
+            char ch = s.charAt(right);
+            frequency[ch]++;
+
+            while (frequency[ch] > 1) {
+                char temp = s.charAt(left);
+                frequency[temp]--;
+                left++;
+            }
+
+            max = Math.max(max, right - left + 1);
+            right++;
+        }
+
+        return max;
+    }
+
     public static void main(String[] args) {
 
         String s = "pwwkew";
