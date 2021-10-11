@@ -22,8 +22,9 @@ public class ReverseLinkedList {
         }
     }
 
-
-    public ListNode reverseList(ListNode head) {
+    //Approach 1: Solving it iteratively. Consider a prev ptr, curr=head and next. Using the above three start reversing
+    // the list. Time: O(n) 100 percentile, space: O(1)
+    public ListNode reverseList1(ListNode head) {
 
         if (head == null || head.next == null) return head;
 
@@ -38,7 +39,20 @@ public class ReverseLinkedList {
         return head;
     }
 
+    //Approach 2: Recursively solve this problem.
+    //Time: O(n) 100 percentile, space: O(n)
+    public ListNode reverseList2(ListNode head) {
+
+        if (head == null || head.next == null) return head;
+
+        ListNode next = reverseList2(head.next);
+        head.next.next = head;
+        head.next = null;
+
+        return head;
+    }
+
     public static void main(String[] args) {
-        
+
     }
 }
