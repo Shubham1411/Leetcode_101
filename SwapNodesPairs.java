@@ -43,7 +43,7 @@ public class SwapNodesPairs {
 
     //Approach 2: Iteratively solve the problem. Time: 0ms
     //Use the dummy node to point to the head node. 
-    // Time: O(n) Space: O(n)
+    // Time: O(n) Space: O(1)
     public ListNode swapPairs2(ListNode head) {
 
         ListNode dummy = new ListNode(-1);
