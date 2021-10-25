@@ -1,6 +1,11 @@
 /*
 Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes
 of the first two lists.
+
+Constraints:
+The number of nodes in both lists is in the range [0, 50].
+-100 <= Node.val <= 100
+Both l1 and l2 are sorted in non-decreasing order.
  */
 public class MergeTwoSortedLists {
     ListNode newHead = null;
@@ -22,7 +27,8 @@ public class MergeTwoSortedLists {
         }
     }
 
-    //Using 2 pointers technique and using merge sort technique
+    //Approach 1: Using 2 pointers technique and using merge sort technique
+    //Time: O(n+m) Space: O(1)
     public ListNode mergeTwoLists1(ListNode l1, ListNode l2) {
 
         if (l1 == null && l2 == null) return null;
@@ -64,7 +70,8 @@ public class MergeTwoSortedLists {
         }
     }
 
-    //Using Recursion technique
+    //Approach 2: Using Recursion technique
+    //Time: O(n+m) Space: O(n+m)
     public ListNode mergeTwoLists2(ListNode l1, ListNode l2) {
 
         if (l1 == null) return l2;
@@ -78,6 +85,30 @@ public class MergeTwoSortedLists {
             return l2;
         }
 
+    }
+
+    //Approach 3: Another iterative approach. Using a dummy node.
+    //Time: O(n+m) Space: O(1)
+    public ListNode mergeTwoLists3(ListNode l1, ListNode l2) {
+
+        ListNode dummy = new ListNode(-1);
+        ListNode prev = dummy;
+
+        while (l1 != null && l2 != null) {
+
+            if (l1.val < l2.val) {
+                prev.next = l1;
+                l1 = l1.next;
+            } else {
+                prev.next = l2;
+                l2 = l2.next;
+            }
+            prev = prev.next;
+        }
+
+        prev.next = l1 == null ? l2 : l1;
+
+        return dummy.next;
     }
 
     public static void main(String[] args) {
