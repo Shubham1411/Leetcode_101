@@ -27,7 +27,7 @@ public class Pow {
 
     //Approach 2: Using Fast power technique + recursion
     //Time complexity : O(log n) Space: O(log n)
-    private double fastPow(double x, long n) {
+    private static double fastPow(double x, long n) {
         if (n == 0) {
             return 1.0;
         }
@@ -41,7 +41,7 @@ public class Pow {
         }
     }
 
-    public double myPow2(double x, int n) {
+    public static double myPow2(double x, int n) {
         long N = n;
         if (N < 0) {
             x = 1 / x;
